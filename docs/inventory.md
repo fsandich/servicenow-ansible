@@ -171,13 +171,13 @@ keyed_groups:
 ### Use related table field
 ```yaml
 plugin: servicenow.servicenow.now
-instance: dev89007
+instance: nowlearning-nlinst01533905-0001
 username: admin
-password: password
-table: cmdb_ci_netgear
+password: J2kb47xW6yYz
+table: change_request
 selection_order: fqdn
 fields: [name,host_name,fqdn,model_id.model_number]
-filter_results: operational_status=1^fqdnISNOTEMPTY^manufacturerSTARTSWITHCisco
+filter_results: category=software
 keyed_groups:
   - key: sn_model_id_model_number | lower
     prefix: 'model'

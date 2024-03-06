@@ -1,0 +1,18 @@
+---
+- name: Obtener lista de cambios de categoría en ServiceNow
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Buscar cambios de categoría
+      snow_record_find:
+        username: 'admin'
+        password: 'J2kb47xW6yYz'
+        instance: 'nowlearning-nlinst01533905-0001'
+        table: 'change_request'
+        query:
+          category: 'Software'
+      register: cambios_de_categoria
+
+    - name: Mostrar cambios de categoría
+      ansible.builtin.debug:
+        var: cambios_de_categoria.records
