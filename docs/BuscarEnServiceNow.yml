@@ -4,15 +4,22 @@
   gather_facts: false
   tasks:
     - name: Buscar cambios de categoría
-      snow_record_find:
-        username: 'admin'
-        password: 'J2kb47xW6yYz'
-        instance: 'nowlearning-nlinst01533905-0001'
+      servicenow.servicenow.snow_record_find:
+        username: 'cyberarc'
+        password: ']H91VN,MC)jPK2HU8:bl'
+        instance: 'bacdev'
         table: 'change_request'
         query:
-          category: 'Software'
-      register: cambios_de_categoria
-
-    - name: Mostrar cambios de categoría
+          category: 'DevOps'
+      register: cambios
+    - name: Debug cambios_de_categoria variable
       ansible.builtin.debug:
-        var: cambios_de_categoria.records
+        var: cambios
+
+    - name: Crear lista de sysid de cambios
+      ansible.builtin.set_fact:
+        cambios_sys_id: "{{ cambios.results | map(attribute='sys_id') | list }}"
+
+    - name: Debug lista de sys_id
+      ansible.builtin.debug:
+        var: cambios_sys_id
